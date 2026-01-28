@@ -1,0 +1,17 @@
+# On ignore le dossier de l'environnement virtuel
+.venv/
+venv/
+env/
+
+# On ignore les dossiers de cache de Python
+__pycache__/
+
+# On ignore la base de données locale
+*.db
+*.sqlite3
+
+# On ignore les fichiers de logs
+*.log
+
+# On ignore les réglages VS Code
+.vscode/
