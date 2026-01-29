@@ -22,8 +22,13 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
+import os
 
-SQLALCHEMY_DATABASE_URL = "psql 'postgresql://neondb_owner:npg_DoiZRdE0nl8J@ep-wild-rice-ahh9n18w-pooler.c-3.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require'"
+SQLALCHEMY_DATABASE_URL = os.environ[
+    "psql 'postgresql://neondb_owner:npg_DoiZRdE0nl8J@ep-wild-rice-ahh9n18w-pooler.c-3.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require'"
+]
+
+# SQLALCHEMY_DATABASE_URL = "psql 'postgresql://neondb_owner:npg_DoiZRdE0nl8J@ep-wild-rice-ahh9n18w-pooler.c-3.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require'"
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
