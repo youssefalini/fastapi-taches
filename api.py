@@ -161,6 +161,7 @@ import crud
 from database import SessionLocal, engine
 from jose import jwt, JWTError
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from fastapi.middleware.cors import CORSMiddleware
 
 # On importe nos outils de sécurité
 from security import verify_password, create_access_token, SECRET_KEY, ALGORITHM
@@ -168,6 +169,21 @@ from security import verify_password, create_access_token, SECRET_KEY, ALGORITHM
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+# --- DÉBUT DU BLOC CORS ---
+# On définit qui a le droit d'entrer.
+# "*" veut dire "Tout le monde". C'est bien pour le développement.
+# En vraie prod, on mettrait ["https://mon-site.com"]
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],  # Autorise tout : GET, POST, DELETE...
+    allow_headers=["*"],  # Autorise tous les types de contenu
+)
+# --- FIN DU BLOC CORS ---
+
 # --- CONFIGURATION SÉCURITÉ ---
 # On dit à FastAPI que l'URL pour se connecter est "/token"
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
