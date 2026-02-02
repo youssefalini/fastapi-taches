@@ -15,3 +15,6 @@ __pycache__/
 
 # On ignore les réglages VS Code
 .vscode/
+
+#On ignore le fichier du lien de la base de données
+.env
